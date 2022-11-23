@@ -1,0 +1,64 @@
+* { 
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(15, 14, 14);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.titulo-principal {
+    text-align: center;
+    margin: 0;
+}
+.Titulos {
+    text-align: center; 
+    font-size: xx-large;
+    font-weight: unset;
+    padding: 1.1em;
+    margin: 0
+    
+}
+.Subtitulos { 
+    text-align: center;
+    margin: 0;
+    padding: 0.1em;
+    
+}
+.content-section {
+    margin: 1em;
+}
+.container { 
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: justify;
+}
+.unidades{
+    font-size: 0.8em;
+}
+.center{
+    text-align: center;
+    align-items: center;
+}
+
+.respuesta{
+    text-align: center;
+    margin: 3em; 
+}
+
+
+.analisis-boton {
+    text-align: center;
+    font-size: 1em;
+
+}
+footer {
+    padding: .25em;
+    margin: 1em;
+}
+.UAC-icon {
+    margin: 15px;
+    margin: 1em;
+}

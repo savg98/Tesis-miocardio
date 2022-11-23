@@ -1,0 +1,149 @@
+<!doctype html>
+<html >
+  <head>
+    <!-- Librerias y estilos a utilizar en HTML -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"> 
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <!--Se importa libreria de python-->
+    <py-env>
+      - matplotlib
+    </py-env>
+  </head>
+  <br>
+  <br>
+  <header>
+    <!-- Titulo del proyecto -->
+    <title>Predicción de riesgo de infarto</title>
+  </header>
+  <body>
+    <!-- Resumen y explicación de proyecto -->
+    <h1 class="titulo-principal">PREDICCION DE INFARTO POR MIOCARDIO </h1>
+    <section class="content-section container">
+      <h2 class="Titulos">¿De qué trata nuestro proyecto?</h2>
+      <p>El infarto de miocardio (IM) es, junto con la angina de pecho, un tipo de enfermedad coronaria (IHD), es decir, una enfermedad causada por el debilitamiento y bloqueo de las arterias del corazón (aterosclerosis coronaria).
+        Los casos de insuficiencias cardiaca suponen un gran problema en la sociedad, razón por la cual mediante el presente formulario se propone un método para ayudar a la prevención temprana de padecimientos de esta, además suponer una prevención temprana puede ayudar al tratamiento anticipado de la afección presentada por los pacientes.
+        Los métodos para usar a la hora de realizar este tipo de tecnologías pueden ser variados
+        Ante la falta una fuente confiable la determinación de este tipo de afección y la falta de atención medica oportuna se ha buscado la manera de implementar este método con el fin de facilitar la detección temprana de una insuficiencia cardiaca y poder brindar a la salud una herramienta a la mano como esta página web
+        Este proyecto busca no solo facilitar a pacientes clínicos y profesionales de la salud la labor de anteponerse al caso de una insuficiencia cardiaca, sino además a responder con rapidez y de ante mano ante el posible padecimiento de una afección de este tipo en pacientes, lo cual supone una gran ayuda a profesionales de la salud y pacientes en general al obtener una respuesta más rápida en cuestión de minutos sobre el estado que presenta su corazón y arterias otorgando una tranquilidad a los usuarios de esta tecnología.</p>
+    </section>
+    <section class="container">
+      <h3 class="Subtitulos">¿Cuáles son las causas? </h3>
+      <p>El 90% de los infartos se produce por uno o varios de los siguientes factores de riesgo:</p>
+      <ol>
+        <li>Hipertensión arterial.</li>
+        <li>Tabaquismo.</li>
+        <li>Dislipemia (alteración de los lípidos).</li>
+        <li>Estrés.</li>
+        <li>Sedentarismo.</li>
+        <li>Obesidad.</li>
+        <li>Diabetes.</li>
+        <li>Ácido úrico láctico.</li>
+        <li>Insuficiencia renal.</li>
+      </ol>
+    </section>
+    <br>
+    <!-- Explicación de los datos requeridos para poder realizar el análisis   -->
+    <h3 class="Titulos">Análisis de los datos</h3>
+    <section class="container">
+      ¿Cómo calcular el porcentaje de probabilidad de padecer infarto de miocardio?.
+      <ol>
+        <li><b>Edad:</b>Edad del paciente.</li>
+        <li><b>Sexo:</b>Sexo del paciente.</li>
+        <li><b>Tipo de dolor de pecho:</b>Tipo de dolor torácico experimentado por el paciente clasificado en: típico, angina típica, dolor no aginal, asintomático </li>
+        <li><b>Resting bp s:</b>Nivel de presión arterial en reposo en mm/HG.</li>
+        <li><b>Colesterol:</b>Colesterol sérico en mg/dl.</li>
+        <li><b>Ritmo cardíaco máximo:</b>Frecuencia cardíaca máxima alcanzada.</li>
+        <li><b>Oldpeak:</b>La depresión del ST inducida por el ejercicio en comparación con el estado de reposo.</li>
+        <li><b>ST slope:</b>Segmento ST medido en términos de pendiente durante el ejercicio máximo.</li>
+      </ol>
+    </section>
+    <!-- Programación del formato de formulario para recolección de datos  -->
+    <br>
+    <br>
+    <section class="container"> 
+      <div id="App" class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="Subtitulos"> Ingresa tus datos </h3>
+            </div>
+            <div class="card-boddy">
+              <form class="row"  action="{{ url_for('data_analist') }}" method="post" name="datos" >
+                
+                <div class="form-group col-md-4">
+                  <label for="age"><b>EDAD</b><b class="unidades">(años)</b></label>
+                  <input  class= "form-control" type="number" name="age"  id="age" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="sex"><b>GÉNERO</b></label>
+                  <select name="sex" id="sex" class="form-control" required>
+                    <option value="0"> MUJER </option>
+                    <option value="1"> HOMBRE </option>
+                  </select></div>
+
+                <div class="form-group col-md-4">
+                  <label for="chest pain type"><b>TIPO DE DOLOR DE PECHO</b></label>
+                  <select name="chest pain type" id="chest pain type" class="form-control" required>
+                    <option value="1"> TIPICO </option>
+                    <option value="2"> ANGINA TIPICO </option>
+                    <option value="3"> DOLOR NO ANGINAL </option>
+                    <option value="4"> ASIMTOMATICO </option>
+                  </select></div>
+
+                <div class="form-group col-md-4">
+                  <label for="cholesterol"><b>COLESTEROL</b><b class="unidades">(mg/dl)</b></label>
+                  <input  class= "form-control" type="number" name="cholesterol"  id="cholesterol" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="max heart rate"><b>RITMO CARDÍACO MÁXIMO</b><b class="unidades">(BPM)</b></label>
+                  <input  class= "form-control" type="number" name="max heart rate"  id="max heart rate" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="oldpeak"><b>OLDPEAK</b></label>
+                  <input  class= "form-control" type="number" step="0.1" name="oldpeak"  id="oldpeak" required>
+                  </div>  
+                <div class="center">
+                  <div class="form-group col-md-16">
+                    <label for="ST slope"><b>ST SLOPE</b></label>
+                    <select name="ST slope" id="ST slope" class="form-control" required> 
+                      <option value="1"> NORMAL </option>
+                      <option value="2"> SUBIDA </option>
+                      <option value="3"> BAJADA </option>
+                    </select></div>
+                </div>
+                <br>
+                <!-- Envío de información a HTML  -->
+                <div class="analisis-boton">
+                  <button class="btn btn-outline-primary">Cálcular</button>    
+                </div>
+              </form>
+              
+              <!-- Programación en lenguaje de python añadida a HTML para mostrar los resultados obtenidos y la gráfica de probabilidad  -->
+              <div class="respuesta">
+                <div class="print">{{a}}</div> 
+                <br>
+                <br>
+                <div class="print">{{b}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body> 
+  <!-- Imagen del logo de UAC -->
+  <footer class="footer-footer">
+      <ul>
+          <a href="https://www.uac.edu.co" target="_blank"> 
+            <img class="UAC-icon" width="100" height="100 "src="https://www.uac.edu.co/descargas_uac/identidad_institucional/MARCA_UNIAUTONOMA_V2_Orientaci%C3%B3n%20Central_Uniaut%C3%B3noma%202020.png" alt="UAC" <a/>
+      </ul>
+  </footer>
+</html>
+
+
